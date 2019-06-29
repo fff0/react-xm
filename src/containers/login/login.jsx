@@ -1,10 +1,11 @@
+// 登录路由文件
 import React, { Component } from 'react'
 
-export default class App extends Component {
+export default class Login extends Component {
   render() {
     return (
       <div>
-        aaaaa1a
+        登录
       </div>
     )
   }
