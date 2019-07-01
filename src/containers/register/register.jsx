@@ -81,12 +81,12 @@ class Register extends Component {
               </Radio>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <Radio
-              checked ={type === 'laoban'}
+              checked ={type === 'boss'}
               onChange = {() => this.handleChange(
                 'type',
-                'laoban'
+                'boss'
               )}>
-              老板
+              Boss
               </Radio>
             </ListItem>
             <WhiteSpace />
