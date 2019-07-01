@@ -9,21 +9,34 @@ import {
   Button
  } from 'antd-mobile'
 
- import Logo2 from '../../components/logo/logo2.jsx'
+import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
-export default class Register extends Component {
+import {login} from '../../redux/actions.js'
+
+import Logo2 from '../../components/logo/logo2.jsx'
+
+class Login extends Component {
   state = {
     username: '', // 用户名
     password: '' // 密码
   }
 
   render() {
+
+    const {msg, redirectTo} = this.props.user
+
+    if(redirectTo) {
+      return <Redirect to={redirectTo} />
+    }
+
     return (
       <div>
         <NavBar>绿帽侠直聘</NavBar>
         <Logo2></Logo2>
         <WingBlank>
           <List>
+            {msg? <div className='error-msg'>{msg}</div> : null}
             <WhiteSpace />
             <InputItem
               placeholder='请输入用户名'
@@ -53,8 +66,10 @@ export default class Register extends Component {
     )
   }
 
+  // 登录
   login = () => {
-    console.log(this.state)
+    // console.log(this.state)
+    this.props.login(this.state)
   }
 
   // 处理输入数据的改变
@@ -69,3 +84,8 @@ export default class Register extends Component {
     this.props.history.replace('/register')
   }
 }
+
+export default connect(
+  state => ({user: state.user}),
+  {login}
+)(Login)

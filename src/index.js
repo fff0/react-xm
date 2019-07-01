@@ -10,6 +10,8 @@ import Register from './containers/register/register.jsx'
 import Login from './containers/login/login.jsx'
 import Main from './containers/main/main.jsx'
 
+import './assets/css/index.less'
+
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter>
