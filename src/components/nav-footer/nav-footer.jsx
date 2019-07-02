@@ -18,7 +18,11 @@ class NavFooter extends Component {
 
   render() {
 
-    const {navList} = this.props
+    let {navList} = this.props
+
+    // 过滤到hide为true的nav
+    navList = navList.filter(nav => !nav.hide)
+
     // 路由组件才有location
     const path = this.props.location.pathname // 请求的path
 
