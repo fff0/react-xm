@@ -14,7 +14,7 @@ import {Redirect} from 'react-router-dom'
 
 import {login} from '../../redux/actions.js'
 
-import Logo2 from '../../components/logo/logo2.jsx'
+import Logo from '../../components/logo/logo.jsx'
 
 class Login extends Component {
   state = {
@@ -33,7 +33,7 @@ class Login extends Component {
     return (
       <div>
         <NavBar>绿帽侠直聘</NavBar>
-        <Logo2></Logo2>
+        <Logo></Logo>
         <WingBlank>
           <List>
             {msg? <div className='error-msg'>{msg}</div> : null}
