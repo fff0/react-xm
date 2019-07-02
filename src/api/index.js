@@ -24,3 +24,8 @@ export const reqUpdateUser = (user) => ajax(
   user,
   'POST'
 )
+
+//获取用户信息
+export const reqUser = () => ajax(
+  '/users'
+)
