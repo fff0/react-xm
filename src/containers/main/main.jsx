@@ -92,6 +92,16 @@ class Main extends Component {
     const {navList} = this
     const path = this.props.location.pathname //请求路径
     const currentNav = navList.find(nav => nav.path === path) // 得到当前的nav
+    if(currentNav){
+      // 决定哪个路由需要隐藏
+      if(user.type === 'boss'){
+        // 隐藏数组的第二个
+        navList[1].hide = true
+      }else{
+        // 隐藏数组的第一个
+        navList[0].hide = true
+      }
+    }
 
     return (
       <div>
