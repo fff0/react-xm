@@ -22,7 +22,7 @@ class Register extends Component {
     username: '', // 用户名
     password: '',  // 密码
     password2: '',  // 确认密码
-    type: 'yonghu'  // 用户类型    1.用户  2.老板
+    type: 'user'  // 用户类型    1.用户  2.老板
   }
 
   render() {
@@ -72,10 +72,10 @@ class Register extends Component {
               <span>创建账号类型</span>
               &nbsp;&nbsp;&nbsp;
               <Radio
-              checked ={type === 'yonghu'}
+              checked ={type === 'user'}
               onChange = {() => this.handleChange(
                 'type',
-                'yonghu'
+                'user'
               )}>
               求职者
               </Radio>

@@ -5,6 +5,8 @@ import {
   ERROR_MSG
 } from './action-type'
 
+import {getRedirectTo} from '../utils'
+
 const initUser = {
   username: '', //用户名
   type: '', //用户类型
@@ -16,7 +18,11 @@ const initUser = {
 function user(state=initUser, action){
   switch (action.type) {
     case AUTH_SUCCESS: //data: user
-      return {...action.data, redirectTo: '/'}
+      const  {type, header} = action.data
+      return {
+        ...action.data,
+        redirectTo: getRedirectTo(type, header)
+      }
 
     case ERROR_MSG: //data: msg
       return {...state, msg: action.data}
