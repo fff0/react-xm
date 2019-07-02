@@ -7,6 +7,8 @@ import {Redirect} from 'react-router-dom'
 import {NavBar, InputItem, TextareaItem, Button} from 'antd-mobile'
 import HeaderSelector from '../../components/header-selector/header-selector.jsx'
 
+import {updateUser} from '../../redux/actions'
+
 
 class BossInfo extends Component {
 
@@ -34,14 +36,15 @@ class BossInfo extends Component {
 
   // 保存信息
   save = () => {
-    console.log(this.state)
-    // this.props.updateUser(this.state)
+    // console.log(this.state)
+    this.props.updateUser(this.state)
   }
   render() {
 
     // 如果信息已经完善, 自动重定向到对应主界面
     const {header, type} = this.props.user
     if(header) { // 说明信息已经完善
+      // 判断用户类型
       const path = type==='user' ? '/user' : '/boss'
       return <Redirect to={path}/>
     }
@@ -99,5 +102,5 @@ class BossInfo extends Component {
 
 export default connect(
   state => ({user: state.user}),
-  {}
+  {updateUser}
 )(BossInfo)
