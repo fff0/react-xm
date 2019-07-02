@@ -3,14 +3,53 @@ import React, { Component } from 'react'
 import {Switch, Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Cookies from 'js-cookie'
+import {NavBar} from 'antd-mobile'
 
 import BossInfo from '../bossinfo/boss-info.jsx'
 import UserInfo from '../userinfo/user-info.jsx'
+import User from '../user/user.jsx'
+import Boss from '../boss/boss.jsx'
+import Personal from '../personal/personal.jsx'
+import Message from '../message/message.jsx'
+import NotFound from '../../components/not-fount/not-fount.jsx'
+import NavFooter from '../../components/nav-footer/nav-footer.jsx'
 
 import {getRedirectTo} from '../../utils'
 import {getUser} from '../../redux/actions.js'
 
 class Main extends Component {
+
+  // 给组件对象添加属性
+  navList = [ // 包含所有导航组件的相关信息数据
+    {
+      path: '/boss', // 路由路径
+      component: Boss, // 跳转组件
+      title: '人才列表', // 头部名字
+      icon: 'user', // 图标名称
+      text: '人才' // 图标下的名字
+    },
+    {
+      path: '/user', // 路由路径
+      component: User,
+      title: 'Boss列表',
+      icon: 'boss',
+      text: '公司'
+    },
+    {
+      path: '/message', // 路由路径
+      component: Message,
+      title: '消息列表',
+      icon: 'message',
+      text: '消息'
+    },
+    {
+      path: '/personal', // 路由路径
+      component: Personal,
+      title: '用户中心',
+      icon: 'personal',
+      text: '个人'
+    }
+  ]
 
   // 实现自动登录
   componentDidMount () {
@@ -50,12 +89,28 @@ class Main extends Component {
 
       }
 
+    const {navList} = this
+    const path = this.props.location.pathname //请求路径
+    const currentNav = navList.find(nav => nav.path === path) // 得到当前的nav
+
     return (
       <div>
+        {currentNav ? <NavBar>{currentNav.title}</NavBar> : null}
         <Switch>
+          {
+            navList.map((nav, index) =>
+            <Route
+            key={index}
+            path={nav.path}
+            component={nav.component}
+            ></Route>)
+          }
           <Route path='/bossinfo' component={BossInfo}></Route>
           <Route path='/userinfo' component={UserInfo}></Route>
+          <Route component={NotFound}></Route>
         </Switch>
+        {currentNav ? <NavFooter
+        navList= {navList} /> : null}
       </div>
     )
   }
