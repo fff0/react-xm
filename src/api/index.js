@@ -25,7 +25,13 @@ export const reqUpdateUser = (user) => ajax(
   'POST'
 )
 
-//获取用户信息
+//获取用户信息,默认get，可以不写
 export const reqUser = () => ajax(
   '/users'
+)
+
+// 根据type类型获取用户列表，默认get
+export const reqUserList = (type) => ajax(
+  '/userlist',
+  {type}
 )
