@@ -12,6 +12,8 @@ import Main from './containers/main/main.jsx'
 
 import './assets/css/index.less'
 
+import './test/socketio_test.js'
+
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter>

@@ -80,6 +80,7 @@ export const login = (user) => {
   // 表单的前台验证
   if(!username){
     return errorMsg('用户名不能为空！')
+
   }else if(!password){
     return errorMsg('密码不能为空！')
   }
