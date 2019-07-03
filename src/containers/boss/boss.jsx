@@ -4,18 +4,25 @@
 
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import UserList from '../../components/user-list/userList.jsx'
+import {getUserList} from '../../redux/actions'
 
 class Boss extends Component {
+
+  // 调用，发送ajax请求
+  componentDidMount () {
+    // 获取userList
+    this.props.getUserList('user')
+  }
+
   render() {
     return (
-      <div>
-        Boss页面
-      </div>
+      <UserList userList ={this.props.userList} />
     )
   }
 }
 
 export default connect(
-  state => ({}),
-  {}
+  state => ({userList: state.userList}),
+  {getUserList}
 )(Boss)
