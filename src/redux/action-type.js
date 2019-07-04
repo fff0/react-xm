@@ -14,3 +14,9 @@ export const RESET_USER = 'reset_user'
 
 // 接收用户列表
 export const RECEIVE_UESR_LIST = 'recelive_user_list'
+
+// 接收消息列表
+export const RECEIVE_MSG_LIST = 'recelive_msg_list'
+
+// 接收一条消息
+export const RECEIVE_MSG = 'recelive_msg'

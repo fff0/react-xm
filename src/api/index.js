@@ -35,3 +35,13 @@ export const reqUserList = (type) => ajax(
   '/userlist',
   {type}
 )
+
+// 获取当前用户的聊天消息列表,get
+export const reqChatMsgList = () => ajax('/msglist')
+
+// 修改指定消息为已读
+export const reqReadMsg = (from) => ajax(
+  '/readmsg',
+  {from},
+  'POST'
+)

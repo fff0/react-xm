@@ -1,10 +1,29 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {NavBar, List, InputItem} from 'antd-mobile'
+import {sendMsg} from '../../redux/actions'
 
 const Item = List.Item
 
 class Chat extends Component {
+
+  state = {
+    content: ''
+  }
+
+  handleSend = () => {
+    const from = this.props.user._id
+    const to = this.props.match.params.userid
+    const content = this.state.content.trim()
+    // console.log(from+'----'+ to+'----'+content)
+    // 发送请求
+    if(content){
+      this.props.sendMsg({from, to, content})
+    }
+    // 清除输入的数据
+    this.setState({content: ''})
+  }
+
   render() {
     return (
       <div id='chat-page'>
@@ -38,8 +57,10 @@ class Chat extends Component {
         <div className= 'am-tab-bar'>
           <InputItem
           placeholder='请输入'
+          value = {this.state.content}
+          onChange={val => this.setState({content: val})}
           extra={
-            <span>发送</span>
+            <span onClick={this.handleSend}>发送</span>
           }></InputItem>
         </div>
 
@@ -49,6 +70,6 @@ class Chat extends Component {
 }
 
 export default connect(
-  state => ({}),
-  {}
+  state => ({user: state.user}),
+  {sendMsg}
 )(Chat)
