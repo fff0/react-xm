@@ -22,10 +22,8 @@ class Chat extends Component {
   // 在第一次render()之前回调
   componentWillMount () {
     // 初始化表情列表数据
-    const emojis = ['😀', '😁', '🤣','😀', '😁', '🤣','😀', '😁', '🤣','😀', '😁', '🤣','😀'
-      ,'😁', '🤣','😀', '😁', '🤣','😀', '😁', '🤣','😀', '😁', '🤣'
-      ,'😁', '🤣','😀', '😁', '🤣','😀', '😁', '🤣','😀', '😁', '🤣'
-      ,'😁', '🤣','😀', '😁', '🤣','😀', '😁', '🤣','😀', '😁', '🤣']
+    const emojis = ['😀', '😁', '🤣','😀', '😁','😆','😶','😒','🙄',
+    '😬','🤥','😌','😔','😪','🤤','👿','💀','💩','🤡','👹','👺','👻','👽','👌']
     this.emojis = emojis.map(emoji => ({text: emoji}))
   }
 
@@ -90,7 +88,7 @@ class Chat extends Component {
 
     // 得到目标用户的header图片对象
     const targetHeader = users[targetId].header
-    const targetIcon = targetHeader ? require(`../../assets/images/${targetHeader}.png`) : null
+    const targetIcon = targetHeader ? require(`../../assets/images/${targetHeader}.png`) : require('../../assets/images/00.png')
 
     return (
       <div id='chat-page'>
@@ -101,7 +99,7 @@ class Chat extends Component {
         >
           {users[targetId].username}
         </NavBar>
-        <List style={{marginTop:50, marginBottom: 50}}>
+        <List style={{marginTop:10, marginBottom: 50}}>
           {/*alpha left right top bottom scale scaleBig scaleX scaleY*/}
           <QueueAnim type='left' delay={100}>
             {
@@ -112,7 +110,7 @@ class Chat extends Component {
                       key={msg._id}
                       thumb={targetIcon}
                     >
-                      {msg.content}
+                      <div className ='chat1'>{msg.content}</div>
                     </Item>
                   )
                 } else { // 我发给对方的
@@ -122,7 +120,7 @@ class Chat extends Component {
                       className='chat-me'
                       extra='我'
                     >
-                      {msg.content}
+                      <div className='chat2'>{msg.content}</div>
                     </Item>
                   )
                 }
@@ -140,7 +138,7 @@ class Chat extends Component {
             onFocus={() => this.setState({isShow: false})}
             extra={
               <span>
-                <span onClick={this.toggleShow} style={{marginRight:5}}>表情</span>
+                <span onClick={this.toggleShow} style={{marginRight:5}}>😀</span>
                 <span onClick={this.handleSend}>发送</span>
               </span>
             }
