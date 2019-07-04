@@ -12,7 +12,7 @@ import {
   RESET_USER,
   RECEIVE_UESR_LIST,
   RECEIVE_MSG_LIST,
-  RECEIVE_MSG
+  // RECEIVE_MSG
 } from './action-type'
 
 // api接口请求函数
@@ -23,7 +23,7 @@ import {
   reqUser,
   reqUserList,
   reqChatMsgList,
-  reqReadMsg
+  // reqReadMsg
 } from '../api'
 
 

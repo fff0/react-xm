@@ -25,33 +25,55 @@ class Chat extends Component {
   }
 
   render() {
+
+    const {user} = this.props
+    const {users, chatMsgs} = this.props.chat
+
+    // 计算当前聊天的chatId
+    const meId = user._id
+    if(!users[meId]){
+      return null
+    }
+    const targetId = this.props.match.params.userid
+    const chatId = [meId, targetId].sort().join('_')
+
+    // 对chatMsgs 进行过滤
+    const msgs = chatMsgs.filter(msg => msg.chat_id === chatId)
+
+    // 得到目标用户的头像
+    const targeHeader = users[targetId].header
+    const targetIcon = targeHeader ? require(`../../assets/images/${targeHeader}.png`) : require('../../assets/images/00.png')
+
     return (
       <div id='chat-page'>
         <NavBar>aa</NavBar>
         <List>
-          <Item
-            thumb={require('../../assets/images/头像2.png')}
-          >
-          你好
-          </Item>
-          <Item
-            thumb={require('../../assets/images/头像2.png')}
-          >
-          你好22
-          </Item>
-          <Item
-            className = 'chat-me'
-            extra='我'
-          >
-          {/* extra={<img src={require('../../assets/images/头像2.png')} alt='头像'/>} */}
-          你ye好
-          </Item>
-          <Item
-            className = 'chat-me'
-            extra = '我'
-          >
-          你ye好
-          </Item>
+          {
+            msgs.map(msg => {
+              if(targetId === msg.from){
+                // 对方发给我的
+                return (
+                  <Item
+                    key ={msg._id}
+                    thumb={targetIcon}
+                  >
+                  {msg.content}
+                  </Item>
+                )
+              }else{
+                // 我发给对方的
+                return (
+                  <Item
+                    key ={msg._id}
+                    className = 'chat-me'
+                    extra = '我'
+                  >
+                  {msg.content}
+                  </Item>
+                )
+              }
+            })
+          }
         </List>
 
         <div className= 'am-tab-bar'>
@@ -70,6 +92,6 @@ class Chat extends Component {
 }
 
 export default connect(
-  state => ({user: state.user}),
+  state => ({user: state.user, chat: state.chat}),
   {sendMsg}
 )(Chat)
