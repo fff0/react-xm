@@ -37,7 +37,7 @@ function initIO(dispatch, userid) {
     io.socket = io('ws://localhost:4000')  // 2. 创建对象之后: 保存对象
     // 绑定监听, 接收服务器发送的消息
     io.socket.on('receiveMsg', function (chatMsg) {
-      console.log('客户端接收服务器发送的消息', chatMsg)
+      // console.log('客户端接收服务器发送的消息', chatMsg)
       // 只有当chatMsg是与当前用户相关的消息, 才去分发同步action保存消息
       // debugger
       if(userid===chatMsg.from || userid===chatMsg.to) {
@@ -63,7 +63,7 @@ async function getMsgList(dispatch, userid) {
 // 发送消息的异步action
 export const sendMsg = ({from, to, content}) => {
   return dispatch => {
-    console.log('客户端向服务器发送消息', {from, to, content})
+    // console.log('客户端向服务器发送消息', {from, to, content})
     // 发消息
     io.socket.emit('sendMsg', {from, to, content})
   }
