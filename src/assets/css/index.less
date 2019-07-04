@@ -1,5 +1,5 @@
 // 错误提示信息
-.error-msg{
+.error-msg {
   color: red;
   text-align: center;
   font-size: 18px;
@@ -44,7 +44,9 @@
 #chat-page .chat-me .am-list-extra {
   flex-basis: auto;
 }
-
+#chat-page{
+  margin-top: 20px;
+}
 #chat-page .chat-me .am-list-content {
   padding-right: 15px;
   // text-align: right;
@@ -56,12 +58,13 @@
   border: 0.5px solid #000;
   line-height: 30px;
   border-radius: 10px;
-  background-color: rgb(102, 202, 241);
+  background-image: url(../images/bb.jpg);
+  background-size: cover;
   padding-left: 10px;
   width: inherit;
   margin-right: 100px;
   white-space: pre-wrap;
-  color: rgb(36, 36, 36)
+  color: rgb(255, 255, 255)
 }
 .am-list-thumb{
   img{
@@ -83,4 +86,10 @@
   overflow: hidden;
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+.sticky-header{  /*使标题始终在顶部*/
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
