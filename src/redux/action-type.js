@@ -13,10 +13,12 @@ export const RECEIVE_USER = 'receive_user'
 export const RESET_USER = 'reset_user'
 
 // 接收用户列表
-export const RECEIVE_UESR_LIST = 'recelive_user_list'
+export const RECEIVE_USER_LIST = 'recelive_user_list'
 
 // 接收消息列表
 export const RECEIVE_MSG_LIST = 'recelive_msg_list'
 
 // 接收一条消息
 export const RECEIVE_MSG = 'recelive_msg'
+
+export const MSG_READ = 'msg_read' // 查看过了某个聊天消息
