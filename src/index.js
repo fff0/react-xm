@@ -21,7 +21,6 @@ ReactDOM.render(
         <Route path='/register' component={Register}></Route>
         <Route path='/login' component={Login}></Route>
         <Route component={Main}></Route>
-        {/* Main 是默认路由 */}
       </Switch>
     </HashRouter>
   </Provider>,
@@ -30,8 +29,3 @@ ReactDOM.render(
 
 //一级路由
 // 注册，登录，主界面
-
-
-
-// Switch
-// 切换作用，只允许一个一级路由存在
